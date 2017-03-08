@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 
 class App extends Component {
+
+  constructor(props) {
+      super(props);
+      this.state = {drawerOpened: false};
+  }
+
+  handleDrawerToggle = () => this.setState({drawerOpened: !this.state.drawerOpened});
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <AppBar title="Kanna" onLeftIconButtonTouchTap={this.handleDrawerToggle}/>
+        <Drawer
+          open={this.state.drawerOpened}
+          docked={false}
+          onRequestChange={(open) => this.setState({drawerOpened: open})}
+        >
+          <MenuItem>Foo</MenuItem>
+          <MenuItem>Bar</MenuItem>
+          <MenuItem>Baz</MenuItem>
+        </Drawer>
       </div>
     );
   }
