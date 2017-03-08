@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -15,16 +16,32 @@ class App extends Component {
   render() {
     return (
       <div>
-        <AppBar title="Kanna" onLeftIconButtonTouchTap={this.handleDrawerToggle}/>
+        <AppBar
+          title='Kanna'
+          onTitleTouchTap={() => browserHistory.push('/')}
+          onLeftIconButtonTouchTap={this.handleDrawerToggle}
+        />
         <Drawer
           open={this.state.drawerOpened}
           docked={false}
           onRequestChange={(open) => this.setState({drawerOpened: open})}
         >
-          <MenuItem>Foo</MenuItem>
-          <MenuItem>Bar</MenuItem>
-          <MenuItem>Baz</MenuItem>
+          <MenuItem onTouchTap={
+            () => {
+              browserHistory.push('about');
+              this.handleDrawerToggle();
+            }
+          }>
+            About
+          </MenuItem>
+          <MenuItem onTouchTap={this.handleDrawerToggle}>Bar</MenuItem>
+          <MenuItem onTouchTap={this.handleDrawerToggle}>Baz</MenuItem>
         </Drawer>
+        <div style={{
+          padding: 20
+        }}>
+          {this.props.children}
+        </div>
       </div>
     );
   }
