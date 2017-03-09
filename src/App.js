@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+import { history } from './AppRoute';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -15,12 +15,11 @@ class App extends Component {
   handleDrawerToggle = () => this.setState({drawerOpened: !this.state.drawerOpened});
 
   render() {
-    const rootPath = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '/' : '/web-seminar-2017/';
     return (
       <div>
         <AppBar
           title='Kanna'
-          onTitleTouchTap={() => browserHistory.push(rootPath)}
+          onTitleTouchTap={() => history.push('/')}
           onLeftIconButtonTouchTap={this.handleDrawerToggle}
         />
         <Drawer
@@ -31,7 +30,7 @@ class App extends Component {
           <MenuItem
             onTouchTap={
               () => {
-                browserHistory.push('about');
+                history.push('about');
                 this.handleDrawerToggle();
               }
             }
@@ -42,7 +41,7 @@ class App extends Component {
             primaryText='Bar'
             onTouchTap={
               () => {
-                browserHistory.push('no-such-url');
+                history.push('no-such-url');
                 this.handleDrawerToggle();
               }
             }
