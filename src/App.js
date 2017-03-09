@@ -15,11 +15,12 @@ class App extends Component {
   handleDrawerToggle = () => this.setState({drawerOpened: !this.state.drawerOpened});
 
   render() {
+    const rootPath = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '/' : '/web-seminar-2017/';
     return (
       <div>
         <AppBar
           title='Kanna'
-          onTitleTouchTap={() => browserHistory.push('/')}
+          onTitleTouchTap={() => browserHistory.push(rootPath)}
           onLeftIconButtonTouchTap={this.handleDrawerToggle}
         />
         <Drawer
