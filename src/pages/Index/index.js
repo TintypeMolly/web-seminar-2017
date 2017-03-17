@@ -7,7 +7,7 @@ const Index = (props) => (
     padding: 20
   }}>
     <div style={{maxWidth: 500}}>
-      <img src={indexImage}/>
+      <img src={indexImage} alt="Kanna is chasing and eating chocolate"/>
       <p>This is the index page.</p>
     </div>
   </Paper>
